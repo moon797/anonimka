@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+python-multipart
+python-magic
+libmagic
+psycopg2
+python-dotenv
+python-jose
+python-multipart
