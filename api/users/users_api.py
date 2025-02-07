@@ -55,7 +55,12 @@ async def remove_post(post_id: int):
     raise HTTPException(status_code=404, detail="Пост не найден")
 
 
-
+@user_router.delete("/comment_delete/{comment_id}")
+async def delete_comment(comment_id: int):
+    result = delete_comment_db(comment_id)
+    if result:
+        return {"status": 0, "message": "Комментарий успешно удален"}
+    raise HTTPException(status_code=404, detail="Комментарий не найден")
 
 class CommentChangeRequest(BaseModel):
     main_text: str
