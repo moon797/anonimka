@@ -47,14 +47,7 @@ def remove_post_db(post_id:int):
         return "Пост успешно удален"
 
 
-def delete_comment_db(comment_id:int):
-    with next(get_db()) as db:
-        comment = db.query(Comment).filter_by(id=comment_id).first()
-        if not comment:
-            return False
-        db.delete(comment)
-        db.commit()
-        return "Комментарий успешно удален"
+
 
 
 def change_comment_db(comment_id:int, main_text:str):
