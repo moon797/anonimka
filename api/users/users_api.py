@@ -63,18 +63,6 @@ async def delete_comment(comment_id: int):
     raise HTTPException(status_code=404, detail="Комментарий не найден")
 
 
-class PostChangeRequest(BaseModel):
-    main_text: str
-
-
-@user_router.put("/post_change/{post_id}")
-async def change_post(post_id: int, post_data: PostChangeRequest):
-    result = change_post_db(post_id, post_data.main_text)
-    if result:
-        return {"status": 0, "message": "Пост успешно изменен"}
-    raise HTTPException(status_code=404, detail="Пост не найден")
-
-
 class CommentChangeRequest(BaseModel):
     main_text: str
 

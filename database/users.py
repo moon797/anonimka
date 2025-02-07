@@ -56,25 +56,6 @@ def delete_comment_db(comment_id:int):
         db.commit()
         return "Комментарий успешно удален"
 
-def change_info_db( user_id:int, password:str,username:str =None, phone_number:str=None, email:str=None, country:str=None, birthday:str=None):
-    with next(get_db()) as db:
-        user = db.query(User).filter_by(id=user_id).first()
-        if user and user.password == password:
-            if username:
-                user.username = username
-            if phone_number:
-                user.phone_number = phone_number
-            if email:
-                user.email = email
-            if country:
-                user.country = country
-            if birthday:
-                user.birthday = birthday
-            db.commit()
-            db.refresh(user)
-            return "Информация успешно обновлена!"
-        return "Неверный пароль или пользователь не найден."
-
 
 def change_comment_db(comment_id:int, main_text:str):
     with next(get_db()) as db:
@@ -86,12 +67,3 @@ def change_comment_db(comment_id:int, main_text:str):
             return "Пост успешно изменен!"
         return "Пост не найден."
 
-def change_post_db(post_id:int, main_text:str):
-    with next(get_db()) as db:
-        post = db.query(Post).filter_by(id=post_id).first()
-        if post:
-            post.main_text = main_text
-            db.commit()
-            db.refresh(post)
-            return True
-        return False
