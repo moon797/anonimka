@@ -33,6 +33,7 @@ def registration_db(username:str, phone_number:str, email:str,password:str, coun
     new_user = User(username=username, phone_number=phone_number, email=email, password=password, country=country, birthday=birthday)
     db.add(new_user)
     db.commit()
+    return "Регистрация прошла успешно"
 
 def login_db(identificator, password:str):
     with next(get_db()) as db:

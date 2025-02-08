@@ -72,3 +72,10 @@ async def change_comment(comment_id: int, comment_data: CommentChangeRequest):
     if result:
         return {"status": 0, "message": "Комментарий успешно изменен"}
     raise HTTPException(status_code=404, detail="Комментарий не найден")
+
+@user_router.delete("/delete_user/{id}")
+async def delete_user(id:int):
+    user = delete_user_db(id)
+    if user:
+        return {"status": 0, "message": "Юзер успешно удален"}
+    return {"status": 1, "message": "Ошибка или такого пользователя нет"}

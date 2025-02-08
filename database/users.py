@@ -67,3 +67,11 @@ def change_comment_db(comment_id:int, main_text:str):
             return "Пост успешно изменен!"
         return "Пост не найден."
 
+def delete_user_db(id:int):
+    with next(get_db()) as db:
+        user = db.query(User).filter_by(id=id).first()
+        if not user:
+            return False
+        db.delete(user)
+        db.commit()
+        return "Юзер удален"
